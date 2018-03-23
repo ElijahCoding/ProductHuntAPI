@@ -20,6 +20,8 @@ class HomeController extends Controller
     {
         $data = json_encode((new ProductHunt($this->client))->get($limit));
 
+
+        // dd(json_decode($data));
         return (new ProductHuntTransformer(json_decode($data)))->create();
     }
 
