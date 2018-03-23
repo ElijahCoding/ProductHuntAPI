@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use App\Services\ProductHunt;
 
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $client;
+
+    public function __construct(Client $client)
     {
-        return view('home');
+      $this->client = $client;
     }
+
+    public function producthunt($limit = 10)
+    {
+        
+    }
+
+
 }
