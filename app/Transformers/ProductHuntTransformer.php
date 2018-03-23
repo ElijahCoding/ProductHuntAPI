@@ -2,7 +2,12 @@
 
 namespace App\Transformers;
 
-class ProductHuntTransformer
+use App\Transformers\TransformerAbstract;
+
+class ProductHuntTransformer extends TransformerAbstract
 {
-  
+  public function transform($payload)
+  {
+    
+  }
 }
