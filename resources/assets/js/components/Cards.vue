@@ -16,8 +16,16 @@
 
 <script>
     export default {
+        data() {
+          return {
+            posts: []
+          }
+        },
+
         mounted() {
-            console.log('Component mounted.')
+            axios.get('http://producthuntteaching.test/api/producthunt').then((response) => {
+
+            })
         }
     }
 </script>
