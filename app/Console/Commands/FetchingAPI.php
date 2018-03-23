@@ -46,18 +46,23 @@ class FetchingAPI extends Command
     public function handle()
     {
 
-      $refresh = Artisan::call('migrate:refresh');
+      Artisan::call('migrate:refresh');
 
       $users = $this->fetchUsers();
+
+      $bar = $this->output->createProgressBar(count($users));
 
       foreach ($users as $user) {
         User::create([
           'name' => $user->name,
           'email' => $user->email
         ]);
+        $bar->advance();
       }
+      $bar->finish();
 
       $posts = $this->fetchPosts();
+      $bar = $this->output->createProgressBar(count($posts));
 
       foreach ($posts as $post) {
         Post::create([
@@ -65,9 +70,11 @@ class FetchingAPI extends Command
           'title' => $post->title,
           'body' => $post->body
         ]);
+        $bar->advance();
       }
+      $bar->finish();
 
-      $this->info('API seeding finished.');
+      $this->info("\nAPI seeding finished.");
     }
 
     protected function fetchUsers()
@@ -83,6 +90,5 @@ class FetchingAPI extends Command
 
       return json_decode($response->getBody());
     }
-
 
 }
