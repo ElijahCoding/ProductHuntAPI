@@ -47274,16 +47274,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            posts: []
-        };
-    },
-    mounted: function mounted() {
-        axios.get('http://producthuntteaching.test/api/producthunt').then(function (response) {});
-    }
+  data: function data() {
+    return {
+      posts: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('http://producthuntteaching.test/api/producthunt').then(function (response) {
+      _this.posts = response.data;
+      console.log(_this.posts);
+    });
+  }
 });
 
 /***/ }),
@@ -47294,32 +47317,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _vm.posts.length
+          ? _c("div", { staticClass: "card card-default" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _vm._v("Example Component")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                _vm._l(_vm.posts, function(post) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass: "card-deck",
+                      staticStyle: { "margin-top": "30px" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card",
+                          attrs: { href: post.link, target: "_blank" }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "card-img-top",
+                            attrs: {
+                              src: post.image_url,
+                              alt: "Card image cap"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("hr"),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "card-body text-center",
+                              attrs: { href: post.link, target: "_blank" }
+                            },
+                            [
+                              _c("h5", { staticClass: "card-title" }, [
+                                _vm._v(_vm._s(post.title))
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "card-text" }, [
+                                _vm._v(_vm._s(post.description))
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "card-footer" })
+                        ]
+                      )
+                    ]
+                  )
+                })
               )
             ])
-          ])
-        ])
+          : _vm._e()
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
