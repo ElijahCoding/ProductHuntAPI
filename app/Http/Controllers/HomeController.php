@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Services\ProductHunt;
+use App\Transformers\ProductHuntTransformer;
 
 class HomeController extends Controller
 {
@@ -17,7 +18,9 @@ class HomeController extends Controller
 
     public function producthunt($limit = 10)
     {
-        
+        $data = json_encode((new ProductHunt($this->client))->get($limit));
+
+        // return (new ProductHuntTransformer(json_decode($data)))->create();
     }
 
 
